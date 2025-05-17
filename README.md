@@ -1,4 +1,4 @@
-# 🎬 CineStream – OTT Booking & Streaming Platform
+# 🎬 Movie Booking – OTT Booking & Streaming Platform
 
 **CineStream** is a full-stack web application inspired by platforms like *BookMyShow*, offering users the ability to register, browse movies, book/cancel tickets, and stream content — all with real-time notifications and email integrations.
 
@@ -123,8 +123,7 @@ Reviews and ratings for each movie.
 
 
 📬 Contact
-Rakesh Kumar
+Nikhil
 📍 Bangalore, Karnataka
-📧 sprakesh4114@gmail.com
-🔗 LinkedIn | GitHub
+📧 nikhilvh2600@gmail.com
 

@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/msg.css' %}">
+
+{% if messages %}
+  <div class="simple-messages">
+    {% for message in messages %}
+      <div class="simple-alert {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

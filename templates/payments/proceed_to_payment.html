@@ -1,0 +1,61 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/proceed_to_payment.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceed to Payment | MovieZone</title>
+</head>
+<body>
+    <!-- Background particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="container">
+        <h1>Proceed to Payment</h1>
+
+        <div class="info">
+            <span>Showtime</span>
+            <span>{{ showtime.show_time }}</span>
+        </div>
+
+        <div class="info">
+            <span>Tickets</span>
+        </div>
+        
+        <div class="seats-container">
+            <div class="seats">
+                {% for ticket in ticket %}
+                    <div class="seat">{{ ticket }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="info">
+            <span>Total Ticket Amount</span>
+            <span>₹{{ total_amount }}</span>
+        </div>
+        
+        <div class="info">
+            <span>Convenience Fee</span>
+            <span>₹{{ convenience_fee }}</span>
+        </div>
+        
+        <div class="info">
+            <span>Subtotal</span>
+            <span>₹{{ sub_total }}</span>
+        </div>
+
+        <div class="payment-container">
+            <form method="post" action="{% url 'payment' booking.id %}">
+                {% csrf_token %}
+                <button type="submit" id="checkout-button">Proceed to Payment</button>
+            </form>
+            
+            <a href="javascript:history.back()" class="back-link">← Back to Selection</a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/proceed_to_payment.js' %}"></script>
+</body>
+</html>

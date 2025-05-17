@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/seating.css' %}">
+
+<div class="cinema-container">
+    <div class="header">
+        <h1 class="movie-title">Avengers: Endgame</h1>
+        <div class="movie-details">Today, 7:30 PM • IMAX Theater</div>
+    </div>
+
+    <div class="screen-container">
+        <div class="screen"></div>
+    </div>
+
+    <div class="seats-legend">
+        <div class="legend-item">
+            <div class="legend-box legend-available"></div>
+            <span>Available</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box legend-selected"></div>
+            <span>Selected</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box legend-unavailable"></div>
+            <span>Unavailable</span>
+        </div>
+    </div>
+
+    <div class="seats-container">
+        <div class="section-title">Regular Seats - ₹150</div>
+        {% for row_label, seats in seat_rows.items %}
+            {% if row_label in "ABCDEF" %}
+            <div class="seat-row" style="animation-delay: {{ forloop.counter0|add:1 }}00ms">
+                <div class="row-label">{{ row_label }}</div>
+                {% for seat in seats %}
+                    <div class="seat {% if seat.id in booked_seat_ids %}unavailable{% endif %}"
+                        data-seat-id="{{ seat.id }}"
+                        data-row-label="{{ row_label }}"
+                        data-seat-number="{{ seat.seat_number }}"
+                        data-price="150">
+                        {{ seat.seat_number }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="seats-container">
+        <div class="section-title">VIP Seats - ₹250</div>
+        {% for row_label, seats in seat_rows.items %}
+            {% if row_label in "GHIJKL" %}
+            <div class="seat-row" style="animation-delay: {{ forloop.counter0|add:7 }}00ms">
+                <div class="row-label">{{ row_label }}</div>
+                {% for seat in seats %}
+                    <div class="seat {% if seat.id in booked_seat_ids %}unavailable{% endif %}"
+                        data-seat-id="{{ seat.id }}"
+                        data-row-label="{{ row_label }}"
+                        data-seat-number="{{ seat.seat_number }}"
+                        data-price="250">
+                        {{ seat.seat_number }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="selectedDisplay">Selected Seats: None</div>
+
+    <form method="post" action="{% url 'book_ticket' showtime.id %}">
+        {% csrf_token %}
+        <input type="hidden" id="selectedSeatsInput" name="selected_seats">
+        <input type="hidden" id="total_amount" name="total_amount">
+        
+        <div class="payment-section">
+            <div class="ticket-info">
+                <div>Total Seats: <span id="totalSeats">0</span></div>
+                <div>Total Amount: <span id="totalAmount">₹0</span></div>
+            </div>
+            
+            <div class="payment-button">
+                <button id="payButton">Proceed to Payment</button>
+            </div>
+            <a href="javascript:history.back()" class="back-link">← Back to Selection</a>
+        </div>
+    </form>
+</div>
+
+<script src="{% static 'js/seating.js' %}" ></script>
+{% endblock %}

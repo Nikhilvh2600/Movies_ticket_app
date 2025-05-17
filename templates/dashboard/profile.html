@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile-page-container fade-in">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
+  <div class="profile-header-section">
+    <div class="profile-avatar">
+      <img src="{{ user.profile.avatar_url|default:'https://i.pravatar.cc/150?img=3' }}" alt="Profile Picture">
+    </div>
+    <div class="profile-user-info">
+      <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+      <p class="email">{{ user.email }}</p>
+      <p class="member-since">Member since: {{ user.date_joined|date:"F Y" }}</p>
+    </div>
+  </div>
+
+  <div class="profile-nav">
+    <button class="profile-tab active" data-tab="details">Profile Details</button>
+    <button class="profile-tab" data-tab="bookings">My Bookings</button>
+    <button class="profile-tab" data-tab="settings">Settings</button>
+  </div>
+
+  <div class="profile-content">
+    
+    <!-- Profile Details Tab -->
+    <section class="tab-content active" id="details">
+      <h3>Personal Details</h3>
+      <ul class="details-list" id="live-details">
+        <li><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        <li><strong>Phone:</strong> {{ user.profile.phone_number|default:"Not provided" }}</li>
+        <li><strong>Location:</strong> {{ user.profile.location|default:"Not provided" }}</li>
+      </ul>
+    </section>
+
+    <!-- Bookings Tab -->
+    <section class="tab-content" id="bookings">
+      <h3>My Bookings</h3>
+      {% if booking_data %}
+        <table class="booking-table">
+          <thead>
+            <tr>
+              <th>Movie</th>
+              <th>Theater</th>
+              <th>Show Time</th>
+              <th>Seats</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for booking in booking_data %}
+            <tr>
+              <td>{{ booking.movie_title }}</td>
+              <td>{{ booking.theater_name }}</td>
+              <td>{{ booking.show_time|date:"D, d M Y H:i" }}</td>
+              <td>{{ booking.seats|join:", " }}</td>
+              <td>
+                <span class="status {{ booking.status|lower }}">{{ booking.status }}</span>
+              </td>
+              <td>
+                {% if booking.status == 'Confirmed' %}
+                  <button class="btn-cancel" data-id="{{ booking.id }}">Cancel</button>
+                {% else %}
+                  -
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No bookings yet.</p>
+      {% endif %}
+    </section>
+
+    <!-- Settings Tab -->
+    <section class="tab-content" id="settings">
+      <h3>Account Settings</h3>
+      <form id="profile-form" method="POST" action="#">
+        {% csrf_token %}
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" value="{{ user.first_name }}" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" value="{{ user.last_name }}" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="{{ user.email }}" required>
+
+        <label for="phone_number">Phone Number</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ user.profile.phone_number|default:'' }}">
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" value="{{ user.profile.location|default:'' }}">
+
+        <button type="submit" class="btn-save">Save Changes</button>
+      </form>
+    </section>
+
+  </div>
+</div>
+
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

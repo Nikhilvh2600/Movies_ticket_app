@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Gallery | MovieZone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="{% static 'css/movies.css' %}">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Featured Slider -->
+    <div class="featured-slider fade-in">
+        <div class="slides-container">
+            <div class="slide active-slide">
+                <img src="https://i.ytimg.com/vi/kJy2M3bD4Dw/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA0wx7XRHVXyvrzTxYLQI3vuTpx1Q" alt="Featured Movie" class="slide-img">
+                <div class="slide-content">
+                    <h3 class="slide-title">M.S. Dhoni: The Untold Story</h3>
+                    <p class="slide-desc">The untold story of Mahendra Singh Dhoni's journey from ticket collector to trophy collector - the world-cup-winning captain of the Indian Cricket Team.</p>
+                    <a href="https://youtu.be/6L6XqWoS8tw?si=__QeYCEU6dIL-Blt" target="_blank">
+                        <button class="slide-button">
+                            <i class="fas fa-play"></i> Watch Now
+                        </button>
+                    </a>
+
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://i.ytimg.com/vi/kSHHDkWmY6k/maxresdefault.jpg" alt="Featured Movie" class="slide-img">
+                <div class="slide-content">
+                    <h3 class="slide-title">Chhichhore</h3>
+                    <p class="slide-desc">A tragic incident forces Anirudh, a middle-aged man, to take a trip down memory lane and reminisce his college days along with his friends, who were labelled as losers.</p>
+                    <a href="https://youtu.be/tsxemFX0a7k?si=sekSLugTwRy58Q2Z" target="_blank">
+                        <button class="slide-button">
+                            <i class="fas fa-play"></i> Watch Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://img.airtel.tv/unsafe/fit-in/1600x0/filters:format(webp)/https://ultra-assets.streamready.in/assets/ULTRA/MOVIE/610902b73b971457336d8c6e/images/LANDSCAPE_169/LANDSCAPE_169_3_IDIOTS_LANDSCAPE_1920_x_1080.jpg?o=production" alt="Featured Movie" class="slide-img">
+                <div class="slide-content">
+                    <h3 class="slide-title">3 Idiots</h3>
+                    <p class="slide-desc">Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them "idiots".</p>
+                    <a href="https://youtu.be/K0eDlFX9GMc?si=WCGxiW-CD3_SSc2D" target="_blank">
+                        <button class="slide-button">
+                            <i class="fas fa-play"></i> Watch Now
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="slide-nav">
+            <div class="slide-dot active" data-slide="0"></div>
+            <div class="slide-dot" data-slide="1"></div>
+            <div class="slide-dot" data-slide="2"></div>
+        </div>
+        <div class="slide-arrows">
+            <div class="slide-arrow prev-slide">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="slide-arrow next-slide">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trending Section -->
+    <div class="trending-section fade-in-delay-1">
+        <div class="section-header">
+            <h3 class="section-title">Trending Now</h3>
+            <a href="#" class="view-all">View All <i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="trending-container">
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">1</div>
+                    <img src="https://canvas-lb.tubitv.com/opts/gCylohYYun4oJQ==/a02442ac-c684-43aa-8d94-847732322306/CIACEPACOgUxLjEuNg==" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Celestial Warriors</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2025
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 9.2
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">2</div>
+                    <img src="https://preview.redd.it/25tqffnbn7t61.jpg?width=640&crop=smart&auto=webp&s=9c9e98c1a71ca63c5b6bf7424e68b932d5e34c53" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Neon Dystopia</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2025
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 8.9
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">3</div>
+                    <img src="https://i.ytimg.com/vi/-5UliNrd0lY/maxresdefault.jpg" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Whispers in Time</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2024
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 8.7
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">4</div>
+                    <img src="https://i.ytimg.com/vi/aPRf3NxtQVY/maxresdefault.jpg" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Azure Skies</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2025
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 8.5
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">5</div>
+                    <img src="https://m.media-amazon.com/images/I/81JjsC3SV3L._AC_UF1000,1000_QL80_.jpg" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Phantom Protocol</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2024
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 8.3
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trending-card">
+                <div class="trending-poster">
+                    <div class="rank-badge">6</div>
+                    <img src="https://i.redd.it/ldf8oupyhepa1.jpg" alt="Trending Movie">
+                </div>
+                <div class="trending-info">
+                    <h4 class="trending-title">Crimson Dawn</h4>
+                    <div class="trending-meta">
+                        <div class="trending-year">
+                            <i class="far fa-calendar-alt"></i> 2025
+                        </div>
+                        <div class="trending-rating">
+                            <i class="fas fa-star"></i> 8.1
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-header fade-in">
+        <h2 class="gallery-title float-animation">Available to Book Movie</h2>
+        <p class="subtitle">Discover the latest and greatest films from around the world</p>
+    </div>
+
+    <div class="filter-container fade-in-delay-1">
+        <div class="filter-tag active" data-filter="all">All Movies</div>
+        <div class="filter-tag" data-filter="action">Action</div>
+        <div class="filter-tag" data-filter="comedy">Comedy</div>
+        <div class="filter-tag" data-filter="drama">Drama</div>
+        <div class="filter-tag" data-filter="scifi">Sci-Fi</div>
+        <div class="filter-tag" data-filter="thriller">Thriller</div>
+    </div>
+    
+    <!-- Glow element for cursor follow -->
+    <div class="glow"></div>
+
+    <div class="gallery-container">
+        {% for movie in movies %}
+            <a href="{% url 'movieview' movie.slug %}" class="movie-card-link">
+                <div class="movie-card" data-category="{{ movie.genre|lower }}">
+                    <div class="movie-poster">
+                        {% if movie.image_url %}
+                            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+                        {% else %}
+                            <img src="https://api.placeholder.com/300/450" alt="{{ movie.title }}">
+                        {% endif %}
+                        <div class="movie-rating">
+                            <i class="fas fa-star"></i> {{ movie.rating|default:"8.5" }}
+                        </div>
+                        <button class="watch-btn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="movie-info">
+                        <div class="movie-title">{{ movie.title }}</div>
+                        <div class="movie-lang">
+                            <i class="fas fa-globe"></i> {{ movie.language }}
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-film"></i> MovieZone
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 MovieZone. All rights reserved.
+            </div>
+        </div>
+    </footer>
+<script src="{% static 'js/movies.js' %}"></script>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/success.css' %}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success | MovieZone</title>
+</head>
+<body>
+    <!-- Background particles -->
+    <div class="bg-particles" id="particles"></div>
+
+    <div class="success-container">
+        <div class="checkmark"></div>
+        <h1>Payment Successful!</h1>
+        <p>Your booking has been confirmed. Tickets have been sent to your email.</p>
+        
+        
+        <div class="button-container">
+            <a href="{% url 'your_orders' %}" class="button primary-button">View Your Ticket</a>
+            <a href="{% url 'allmovies' %}" class="button secondary-button">Back to Home</a>
+            <a href="javascript:history.back()" class="back-link">← Back to Selection</a>
+        </div>
+    </div>
+
+ <script src="{% static 'js/success.js' %}" ></script>
+</body>
+</html>

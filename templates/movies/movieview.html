@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/movieview.css' %}">
+
+<!-- Background particles -->
+<div class="bg-particles" id="particles"></div>
+
+<div class="container">
+    <h1 class="page-title">Movie Details</h1>
+    
+    <div class="movie-card">
+        <div class="poster-container">
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+        </div>
+        <div class="movie-info">
+            <h1>{{ movie.title }}</h1>
+            <div class="rating-line">
+                <span class="stars">⭐</span> {{ rating|floatformat:1 }}/10 &nbsp;👥 {{ no_user }} reviews
+            </div>
+            <p><strong>📅 Release Date:</strong> {{ movie.release_date }}</p>
+            <p><strong>⏱️ Duration:</strong> {{ movie.duration_minutes }} minutes</p>
+            <p><strong>👨‍🎤 Cast:</strong> {{ movie.cast }}</p>
+            
+            <div class="synopsis">
+                <p><strong>📝 Synopsis:</strong> {{ movie.synopsis }}</p>
+            </div>
+
+            <div class="button-group">
+                {% if movie.triller_url %}
+                    <a href="{{ movie.triller_url }}" target="_blank" class="button">▶ Watch Trailer</a>
+                {% endif %}
+                <a href="{% url 'theater_showtime_date' movie.slug today %}" class="button">🎟️ Book Tickets</a>
+                <a href="{% url 'filtered_movies' %}" class="button">← Back to Movies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-section">
+        <h2>Audience Reviews <span class="review-count">{{ no_user }}</span></h2>
+        
+        <div class="reviews-container">
+            {% if reviews %}
+                {% for review in reviews %}
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="review-rating">⭐ {{ review.rating }}</span>
+                            <form action="{% url 'delete_review' review.review_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-review">🗑️</button>
+                            </form>
+                        </div>
+                        <p class="review-text">{{ review.review_text }}</p>
+                        <small class="review-user">{{ review.user.username }}</small>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-reviews">
+                    <p>No reviews yet. Be the first to share your thoughts!</p>
+                </div>
+            {% endif %}
+        </div>
+        
+        <a href="{% url 'add_review' movie.slug %}" class="add-review-btn">Write a Review</a>
+    </div>
+</div>
+<script src="{% static 'js/movieview.js' %}"></script>
+
+{% endblock %}

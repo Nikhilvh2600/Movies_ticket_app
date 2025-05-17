@@ -1,0 +1,70 @@
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/add_review.css' %}">
+
+<!-- Background particles -->
+<div class="bg-particles" id="particles"></div>
+
+<div class="container">
+    <h1 class="page-title">Share Your Experience</h1>
+    
+    <div class="review-container">
+        <div class="review-header">
+            <h2>Add Your Review</h2>
+            <p>Help others by sharing your honest opinion about the movie</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label class="form-label">Rating (out of 10)</label>
+                <div class="rating-group">
+                    <input type="radio" id="star10" name="rating" value="10" required />
+                    <label for="star10">★</label>
+                    
+                    <input type="radio" id="star9" name="rating" value="9" />
+                    <label for="star9">★</label>
+                    
+                    <input type="radio" id="star8" name="rating" value="8" />
+                    <label for="star8">★</label>
+                    
+                    <input type="radio" id="star7" name="rating" value="7" />
+                    <label for="star7">★</label>
+                    
+                    <input type="radio" id="star6" name="rating" value="6" />
+                    <label for="star6">★</label>
+                    
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label for="star5">★</label>
+                    
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4">★</label>
+                    
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3">★</label>
+                    
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2">★</label>
+                    
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1">★</label>
+                </div>
+                <div class="rating-text" id="rating-text"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="review_text" class="form-label">Your Review</label>
+                <textarea class="form-control" id="review_text" name="review_text" rows="6" placeholder="Share your thoughts about the story, acting, direction, music..." maxlength="500" required></textarea>
+                <div class="char-counter"><span id="char-count">0</span>/500</div>
+            </div>
+            
+            <button type="submit" class="submit-button">Submit Review</button>
+            
+            <a href="javascript:history.back()" class="back-link">← Back to Movie</a>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/add_review.js' %}" ></script>
+{% endblock %}

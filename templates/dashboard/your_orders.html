@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/your_orders.css' %}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Booked Tickets</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>Your Booked Tickets</h1>
+    <p class="subtitle">Manage your upcoming movie experiences</p>
+  </header>
+
+  <div class="tickets-container">
+    {% if bookings %}
+      {% for booking in bookings %}
+        <div class="ticket">
+          <div class="ticket-header">
+            <div>
+              <h2 class="movie-title">{{ booking.showtime.movie.title }}</h2>
+              <p>Confirmation #{{ booking.id|stringformat:"06d" }}</p>
+            </div>
+            <!-- Dummy QR code -->
+            <div class="qr-placeholder">QR Code</div>
+          </div>
+          
+          <div class="ticket-details">
+            <div class="detail-group">
+              <div class="detail-label">Theatre</div>
+              <div class="detail-value">{{ booking.showtime.theater.name }}</div>
+            </div>
+            
+            <div class="detail-group">
+              <div class="detail-label">Show Time</div>
+              <div class="detail-value">{{ booking.showtime.show_time }}</div>
+            </div>
+            
+            <div class="detail-group">
+              <div class="detail-label">Screen</div>
+              <div class="detail-value">{{ booking.showtime.screen_number }}</div>
+            </div>
+            
+            <div class="detail-group">
+              <div class="detail-label">Status</div>
+              <div class="detail-value">{{ booking.booking_status }}</div>
+            </div>
+          </div>
+          
+          <div class="detail-group">
+            <div class="detail-label">Address</div>
+            <div class="detail-value">{{ booking.showtime.theater.address }}</div>
+          </div>
+
+          <div class="ticket-divider"></div>
+          
+          <div class="seats-section">
+            <div class="seats-label">Reserved Seats</div>
+            <div class="seat-list">
+              {% for key, booking_seats in ticket.items %}
+                {% for seat in booking_seats %}
+                  <span class="seat-badge">
+                    {{ seat.seat.row_label }}{{ seat.seat.seat_number }} - {{ seat.seat.seat_type }}
+                  </span>
+                {% endfor %}
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            {% if booking.can_cancel %}
+              <a href="{% url 'cancel_booking' booking.id %}" class="button button-primary">
+                Cancel Ticket
+              </a>
+            {% else %}
+              <span class="button button-disabled">
+                Cancellation Closed
+              </span>
+            {% endif %}
+            <!-- Dummy PDF download link -->
+            <a href="#" class="button button-secondary">Download PDF</a>
+          </div>
+            <div><a href="javascript:history.back()" class="button button-three">← Back to Selection</a></div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="empty-state">
+        <div class="empty-state-icon">🎬</div>
+        <p class="empty-state-text">No tickets found. Book a movie to start your cinematic journey!</p>
+        <a href="{% url 'movies' %}" class="button button-primary">Browse Movies</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+<script src="{% static 'js/your_orders.js' %}"></script>
+
+</body>
+</html>

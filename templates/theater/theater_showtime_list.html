@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include 'bookings/calender_widget.html' %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/theater_showtime_list.css' %}">
+
+<div class="showtime-container">
+    <h1 class="page-title">Movie Showtimes</h1>
+    
+    {% for show_time in theater_showtimes %}
+        <div class="theater-box">
+            <div class="theater-name-container">
+                <div class="theater-icon">🎬</div>
+                <div class="theater-name">{{ show_time.0.theater }}</div>
+                {% if show_time.0.premium %}
+                    <span class="premium-badge">PREMIUM</span>
+                {% endif %}
+            </div>
+            
+            <div class="theater-description">
+                Experience movies like never before with state-of-the-art projection and immersive sound systems.
+            </div>
+            
+            <div class="icons">
+                <div class="icon-badge">
+                    <span class="icon-ticket">🎟 M-Ticket Available</span>
+                </div>
+                <div class="icon-badge">
+                    <span class="icon-food">🍿 Snacks & Drinks</span>
+                </div>
+                <div class="icon-badge">
+                    <span class="icon-seat">💺 Recliner Seats</span>
+                </div>
+            </div>
+            
+            <div class="show-details">
+                {% for show in show_time %}
+                    <div class="show-time">
+                        <a href="{% url 'seat_selection' show.id %}">
+                            {{ show.show_time|date:"g:i A" }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <div class="info-line">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                Easy cancellation available for this theater.
+            </div>
+            
+            <div class="price-info">
+                Starting from $12.99 • 3D/IMAX options available
+            </div>
+        </div>
+    {% endfor %}
+    
+    <div class="scroll-hint">
+        Scroll to view more theaters
+        <div class="scroll-icon"></div>
+    </div>
+    <a href="javascript:history.back()" class="back-link">← Back to Selection</a>
+</div>
+
+<script src="{% static 'js/theater_showtime_list.js' %}" ></script>
+
+{% endblock %}

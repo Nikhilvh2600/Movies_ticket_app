@@ -1,0 +1,16 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/calender.css' %}">
+
+{% block content %}
+<div class="calendar">
+    {% for day in week %}
+    <a href="{% url 'theater_showtime_date' slug day.date %}">
+        <div class="day {% if day.date == today %}today{% endif %}">
+            <span>{{ day.name }}</span> 
+            <span>{{ day.day }}</span>
+            <span>{{ day.month }}</span>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

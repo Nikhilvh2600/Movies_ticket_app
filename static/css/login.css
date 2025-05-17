@@ -1,0 +1,181 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to right, #000000, #0f2027);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 480px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 25px;
+        padding: 40px 35px;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+        animation: popUp 1.2s ease;
+        border: 1px solid rgba(0, 255, 255, 0.2);
+        color: white;
+        position: relative;
+        z-index: 1;
+    }
+
+    .login-container::before {
+        content: '';
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 300%;
+        height: 300%;
+        background: linear-gradient(60deg, aqua, white, aqua);
+        opacity: 0.15;
+        filter: blur(120px);
+        z-index: -1;
+        animation: rotateBackground 20s linear infinite;
+    }
+
+    .login-container h2 {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 600;
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 30px;
+        color: aqua;
+        text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .form-control {
+        border-radius: 14px !important;
+        padding: 12px 16px !important;
+        border: none !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.1) !important;
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .form-control::placeholder {
+        color: #ccc;
+    }
+
+    .form-control:focus {
+        border: none;
+        outline: none;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .btn-custom {
+        background: linear-gradient(135deg, aqua, white);
+        color: black;
+        font-weight: 600;
+        border: none;
+        border-radius: 14px;
+        padding: 14px 20px;
+        width: 100%;
+        letter-spacing: 0.6px;
+        transition: all 0.4s ease;
+        margin-top: 15px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .btn-custom:hover {
+        background: linear-gradient(135deg, white, aqua);
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+    }
+
+    .forgot-password {
+        text-align: right;
+        margin: 15px 0;
+    }
+
+    .forgot-password a {
+        font-size: 14px;
+        color: #ddd;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .forgot-password a:hover {
+        color: aqua;
+        text-shadow: 0 0 5px aqua;
+    }
+
+    .google-btn {
+        display: block;
+        margin: 20px auto 10px auto;
+        padding: 12px 20px;
+        text-align: center;
+        color: black;
+        background: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+        transition: 0.3s ease;
+    }
+
+    .google-btn:hover {
+        background: aqua;
+        color: black;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #ccc;
+        font-size: 14px;
+    }
+
+    .register-link a {
+        color: aqua;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    @keyframes popUp {
+        0% {
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes rotateBackground {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }

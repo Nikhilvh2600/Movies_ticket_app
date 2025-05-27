@@ -19,12 +19,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
-
+SECRET_KEY = 'django-insecure-q76m0!9kw3+u&zm%v*h2i3^79m%3qi=b6r#x++=exkm*3g-+as'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+
+
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -149,9 +154,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-     
+        'APP': {
+            'client_id': '31906034492-3tf6mk31as5jfku7l9n78f90c91aqbqv.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
     }
 }
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -174,6 +184,9 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+
+STRIPE_PUBLIC_KEY='pk_test_51BTUDGJAJfZb9HEBwDg86TN1KNprHjkfipXmEDMb0gSCassK5T3ZfxsAbcgKVmAIXF7oZ6ItlZZbXO6idTHE67IM007EwQ4uN3'
+STRIPE_SECRET_KEY='sk_test_tR3PYbcVNZZ796tH88S4VQ2u'

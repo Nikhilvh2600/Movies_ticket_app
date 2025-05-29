@@ -1,0 +1,425 @@
+
+    :root {
+        --primary: #00ffd5;
+        --primary-dark: #00b3a1;
+        --secondary: #80ffdb;
+        --background-start: #0f2027;
+        --background-mid: #203a43;
+        --background-end: #2c5364;
+        --seat-border: #0b5555;
+        --seat-hover: rgba(68, 255, 153, 0.15);
+        --seat-selected: #023438;
+        --seat-selected-border: #12f5e9;
+        --unavailable: #444;
+    }
+
+    body {
+        background: radial-gradient(circle at top left, var(--background-start), var(--background-mid), var(--background-end));
+        color: #e0e0e0;
+        font-family: 'Montserrat', 'Segoe UI', sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .cinema-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        position: relative;
+    }
+
+    .cinema-container::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        background: rgba(15, 32, 39, 0.5);
+        border-radius: 15px;
+        z-index: -1;
+        filter: blur(8px);
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .movie-title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0;
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .movie-details {
+        font-size: 16px;
+        opacity: 0.8;
+        margin-top: 5px;
+    }
+
+    .screen-container {
+        perspective: 1000px;
+        margin-bottom: 60px;
+    }
+
+    .screen {
+        background: linear-gradient(to bottom, #00ffd5, #00a89a);
+        height: 70px;
+        width: 100%;
+        margin: 0 auto 15px;
+        border-radius: 50%/10px 10px 0 0;
+        box-shadow: 0 0 20px rgba(0, 255, 213, 0.4);
+        transform: rotateX(-30deg);
+        transform-origin: center bottom;
+        position: relative;
+        overflow: hidden;
+        animation: screenGlow 3s ease-in-out infinite alternate;
+    }
+
+    .screen::after {
+        content: 'SCREEN';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        font-size: 24px;
+        color: rgba(0, 10, 20, 0.8);
+        letter-spacing: 8px;
+    }
+
+    .screen::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+        animation: screenScan 5s linear infinite;
+    }
+
+    .seats-legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .legend-box {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+    }
+
+    .legend-available {
+        border: 2px solid var(--seat-border);
+        background-color: transparent;
+    }
+
+    .legend-selected {
+        border: 2px solid var(--seat-selected-border);
+        background-color: var(--seat-selected);
+        box-shadow: 0 0 8px rgba(18, 245, 233, 0.5);
+    }
+
+    .legend-unavailable {
+        border: 2px solid #666;
+        background-color: var(--unavailable);
+    }
+
+    .section-title {
+        margin: 40px 0 20px;
+        position: relative;
+        text-align: center;
+        color: var(--secondary);
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: var(--primary);
+        border-radius: 3px;
+    }
+
+    .seats-container {
+        margin-bottom: 40px;
+        padding: 20px 0;
+        border-radius: 12px;
+        background-color: rgba(20, 30, 40, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .seat-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        opacity: 0;
+        animation: fadeInUp 0.3s ease forwards;
+    }
+
+    .row-label {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        margin-right: 15px;
+        color: #ddd;
+    }
+
+    .seat {
+        width: 38px;
+        height: 38px;
+        border: 2px solid var(--seat-border);
+        border-radius: 8px 8px 0 0;
+        margin: 5px;
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #39cde7;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+    }
+
+    .seat::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: rgba(11, 85, 85, 0.5);
+        border-radius: 0 0 4px 4px;
+    }
+
+    .seat:hover {
+        background-color: var(--seat-hover);
+        transform: translateY(-5px);
+    }
+
+    .seat.selected {
+        background-color: var(--seat-selected);
+        color: #fff;
+        border-color: var(--seat-selected-border);
+        box-shadow: 0 0 12px rgba(18, 134, 150, 0.7);
+        transform: translateY(-5px);
+    }
+
+    .seat.selected::after {
+        background-color: rgba(18, 245, 233, 0.5);
+    }
+
+    .seat.unavailable {
+        background-color: var(--unavailable);
+        color: #888;
+        border-color: #666;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .seat.unavailable::after {
+        background-color: rgba(102, 102, 102, 0.5);
+    }
+
+    #selectedDisplay {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(0, 30, 60, 0.3);
+        border-radius: 8px;
+        font-weight: 500;
+        color: #3bf2ff;
+        border-left: 4px solid var(--primary);
+        transition: all 0.3s ease;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .payment-section {
+        margin-top: 40px;
+        text-align: center;
+        position: relative;
+    }
+
+    .ticket-info {
+        display: flex;
+        justify-content: space-between;
+        max-width: 400px;
+        margin: 0 auto 20px;
+        padding: 15px;
+        background: rgba(30, 40, 50, 0.4);
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .payment-button {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+
+    .payment-button button {
+        background: linear-gradient(45deg, #00ffc3, #00deff);
+        color: #012b30;
+        border: none;
+        padding: 15px 40px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 5px 15px rgba(0, 255, 195, 0.3);
+    }
+
+    .payment-button button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 255, 195, 0.4);
+    }
+
+    .payment-button button:active {
+        transform: translateY(1px);
+    }
+
+    .payment-button::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background: linear-gradient(45deg, #00ffc3, #00deff, #00ffc3);
+        border-radius: 12px;
+        z-index: 0;
+        opacity: 0.7;
+        filter: blur(5px);
+        animation: borderGlow 3s linear infinite;
+    }
+    .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards 1.4s;
+        }
+
+        .back-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes screenScan {
+        0% {
+            transform: translateX(-50%) skewX(45deg);
+        }
+        100% {
+            transform: translateX(50%) skewX(45deg);
+        }
+    }
+
+    @keyframes screenGlow {
+        0% {
+            box-shadow: 0 0 20px rgba(0, 255, 213, 0.4);
+        }
+        100% {
+            box-shadow: 0 0 40px rgba(0, 255, 213, 0.6);
+        }
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px rgba(0, 255, 213, 0.5);
+        }
+        to {
+            text-shadow: 0 0 20px rgba(0, 255, 213, 0.8), 0 0 30px rgba(0, 255, 213, 0.6);
+        }
+    }
+
+    @keyframes borderGlow {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+        .seat {
+            width: 32px;
+            height: 32px;
+            margin: 3px;
+            font-size: 12px;
+        }
+
+        .row-label {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .screen {
+            height: 50px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .seat {
+            width: 28px;
+            height: 28px;
+            margin: 2px;
+            font-size: 11px;
+        }
+    }

@@ -1,0 +1,51 @@
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 80, 80, 0.6);
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, #ff4d4d, #8e2e2e);
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }

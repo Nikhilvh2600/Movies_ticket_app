@@ -1,0 +1,178 @@
+.profile-page-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #121212;
+  color: #eee;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #0f62fe88;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header-section {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #0f62fe;
+  object-fit: cover;
+}
+
+.profile-user-info h2 {
+  margin: 0 0 8px;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.email {
+  color: #8a8a8a;
+  font-size: 0.9rem;
+}
+
+.member-since {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.profile-nav {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.profile-tab {
+  background: transparent;
+  border: none;
+  color: #8a8a8a;
+  font-weight: 600;
+  padding: 10px 25px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.profile-tab.active,
+.profile-tab:hover {
+  background: #0f62fe;
+  color: white;
+}
+
+.profile-content {
+  min-height: 300px;
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.details-list {
+  list-style: none;
+  padding: 0;
+  line-height: 1.7;
+}
+
+.details-list li strong {
+  color: #0f62fe;
+}
+
+.booking-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.booking-table thead {
+  background: #0f62fe;
+  color: #fff;
+}
+
+.booking-table th,
+.booking-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.booking-table tbody tr:hover {
+  background: #272727;
+}
+
+.status.confirmed {
+  color: #0f62fe;
+  font-weight: 700;
+}
+
+.status.cancelled {
+  color: #ff5555;
+  font-weight: 700;
+}
+
+.btn-cancel {
+  background-color: #ff5555;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: #e04444;
+}
+
+form label {
+  display: block;
+  margin: 15px 0 5px;
+  font-weight: 600;
+}
+
+form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #1e1e1e;
+  color: #eee;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #0f62fe;
+}
+
+.btn-save {
+  margin-top: 25px;
+  background-color: #0f62fe;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-save:hover {
+  background-color: #0059c1;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}

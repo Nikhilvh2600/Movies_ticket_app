@@ -17,29 +17,70 @@
         }
 
         /* Navbar Styling */
+        /* Basic Reset & Structure */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(17, 25, 40, 0.85);
-            padding: 15px 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 229, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0, 229, 255, 0.08);
-            transition: all 0.4s ease;
-        }
-
-        .navbar:hover {
-            background: rgba(17, 25, 40, 0.95);
+            padding: 10px 20px;
+            flex-wrap: wrap;
+            background-color: #111;
+            color: white;
+            position: relative;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
+            flex-grow: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* Responsive behavior */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: #111;
+                margin-top: 10px;
+                padding: 10px 0;
+                border-top: 1px solid #333;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a,
+            .search-bar,
+            .user-profile,
+            .auth-buttons {
+                width: 100%;
+                padding: 10px 20px;
+            }
+        }
+
+
+        .navbar:hover {
+            background: rgba(17, 25, 40, 0.95);
         }
 
         .logo-wrapper {
